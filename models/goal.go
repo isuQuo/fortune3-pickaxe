@@ -33,5 +33,5 @@ func (g *Goal) CalculateSavings() string {
 	g.EndDate = g.StartDate.AddDate(0, g.MonthsToGoal, 0)
 
 	return fmt.Sprintf("Name: %s\nCurrent Savings: $%.2f\nTotal Needed: $%.2f\nMonthly Contribution: $%.2f\nStart Date: %s\nEnd Date: %s\n",
-		g.Name, g.CurrentSavings, g.TotalNeeded, g.MonthlyContribution, g.StartDate.Format("01-02-2023"), g.EndDate.Format("01-02-2023"))
+		g.Name, g.CurrentSavings, g.TotalNeeded, g.MonthlyContribution, g.StartDate, g.EndDate)
 }

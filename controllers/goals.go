@@ -12,7 +12,7 @@ type Goals struct {
 	Templates struct {
 		New Template
 	}
-	Goal *models.Goal
+	Goal models.Goal
 }
 
 func (g Goals) New(w http.ResponseWriter, r *http.Request) {
