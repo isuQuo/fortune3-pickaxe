@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Goal struct {
 	Name                string
@@ -12,8 +15,23 @@ type Goal struct {
 	MonthsToGoal        int
 }
 
-func (g *Goal) CalculateSavings() {
+func (g *Goal) Create(name string, totalNeeded, currentSavings, monthlyContribution float64, monthsToGoal int64, startDate, endDate time.Time) (*Goal, error) {
+	return &Goal{
+		Name:                name,
+		CurrentSavings:      currentSavings,
+		TotalNeeded:         totalNeeded,
+		MonthlyContribution: monthlyContribution,
+		StartDate:           startDate,
+		EndDate:             endDate,
+		MonthsToGoal:        g.MonthsToGoal,
+	}, nil
+}
+
+func (g *Goal) CalculateSavings() string {
 	g.MonthlyContribution = (g.TotalNeeded - g.CurrentSavings) / (float64(g.MonthsToGoal))
 	g.StartDate = time.Now()
 	g.EndDate = g.StartDate.AddDate(0, g.MonthsToGoal, 0)
+
+	return fmt.Sprintf("Name: %s\nCurrent Savings: $%.2f\nTotal Needed: $%.2f\nMonthly Contribution: $%.2f\nStart Date: %s\nEnd Date: %s\n",
+		g.Name, g.CurrentSavings, g.TotalNeeded, g.MonthlyContribution, g.StartDate.Format("01-02-2023"), g.EndDate.Format("01-02-2023"))
 }

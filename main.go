@@ -1,23 +1,35 @@
 package main
 
 import (
-	"fortune3-pickaxe/controllers"
-	"fortune3-pickaxe/models"
-
 	"fmt"
+	"fortune3-pickaxe/controllers"
+	"fortune3-pickaxe/templates"
+	"fortune3-pickaxe/views"
+	"net/http"
+
+	"github.com/go-chi/chi/v5"
 )
 
+func errorHandler(w http.ResponseWriter, r *http.Request) {
+	http.Error(w, "Page not found", http.StatusNotFound)
+}
+
 func main() {
-	goal := &models.Goal{
-		Name:           "Down Payment on House",
-		TotalNeeded:    100000.00,
-		CurrentSavings: 25000.00,
-		MonthsToGoal:   24,
-	}
+	r := chi.NewRouter()
 
-	g := controllers.NewGoalController(goal)
-	g.CalculateSavings()
+	r.Get("/", controllers.StaticHandler(views.Must(views.ParseFS(
+		templates.FS, "home.gohtml", "tailwind.gohtml",
+	))))
 
-	fmt.Printf("Name: %s\nTotal Needed: $%.2f\nCurrent Savings: $%.2f\nMonthly Contribution: $%.2f\nStart Date: %s\nEnd Date: %s\n",
-		goal.Name, goal.TotalNeeded, goal.CurrentSavings, goal.MonthlyContribution, goal.StartDate.Format("2006-01-02"), goal.EndDate.Format("2006-01-02"))
+	goalsC := controllers.Goals{}
+	goalsC.Templates.New = views.Must(views.ParseFS(
+		templates.FS, "goal.gohtml", "tailwind.gohtml",
+	))
+
+	r.Get("/goal", goalsC.New)
+	r.Post("/create-goal", goalsC.Create)
+	r.NotFound(errorHandler)
+
+	fmt.Println("Starting the server on :3000...")
+	http.ListenAndServe("127.0.0.1:3000", r)
 }
