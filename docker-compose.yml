@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment: # TODO: Provide environment variables
+      POSTGRES_USER: steve
+      POSTGRES_PASSWORD: pickaxe
+      POSTGRES_DB: fortune3
+    ports:
+      - 5432:5432
