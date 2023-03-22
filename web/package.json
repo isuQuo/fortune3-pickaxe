@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.2.7"
+  },
+  "name": "fortune3-pickaxe",
+  "scripts": {
+    "build": "npx tailwindcss -i ./src/styles.css -o ./public/styles.css --minify",
+    "dev": "npx tailwindcss -i ./src/styles.css -o ./public/styles.css --watch"
+  }
+}

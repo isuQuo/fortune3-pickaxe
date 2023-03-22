@@ -1,0 +1,119 @@
+{{ define "content" }}
+<div class="py-12 flex justify-center">
+  <div class="px-8 py-8 bg-white rounded shadow">
+    <h1 class="pt-4 pb-8 text-center text-3xl font-bold text-gray-900">
+      Create a saving goal
+    </h1>
+    <form action="/goal" method="post">
+        <div class="py-2">
+        <label for="name" class="text-sm font-semibold text-gray-800">
+            Goal Name
+        </label>
+        <input
+            name="name"
+            id="name"
+            type="text"
+            required
+            autocomplete="name"
+            class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500
+            text-gray-800 rounded"
+        />
+        </div>
+        <div class="py-2">
+        <label for="total-needed" class="text-sm font-semibold text-gray-800">
+            Total Needed
+        </label>
+        <input
+            name="total-needed"
+            id="total-needed"
+            type="number"
+            step="0.01"
+            required
+            autocomplete="total-needed"
+            class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500
+            text-gray-800 rounded"
+        />
+        </div>
+        <div class="py-2">
+        <label for="current-savings" class="text-sm font-semibold text-gray-800">
+            Current Savings
+        </label>
+        <input
+            name="current-savings"
+            id="current-savings"
+            type="number"
+            step="0.01"
+            required
+            autocomplete="current-savings"
+            class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500
+            text-gray-800 rounded"
+        />
+        </div>
+        <div class="py-2">
+        <label for="monthly-contribution" class="text-sm font-semibold text-gray-800">
+            Monthly Contribution
+        </label>
+        <input
+            name="monthly-contribution"
+            id="monthly-contribution"
+            type="number"
+            step="0.01"
+            required
+            autocomplete="monthly-contribution"
+            class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500
+            text-gray-800 rounded"
+        />
+        </div>
+        <div class="py-2">
+        <label for="start-date" class="text-sm font-semibold text-gray-800">
+            Start Date
+        </label>
+        <input
+            name="start-date"
+            id="start-date"
+            type="date"
+            required
+            autocomplete="start-date"
+            class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500
+            text-gray-800 rounded"
+        />
+        </div>
+        <div class="py-2">
+        <label for="start-date" class="text-sm font-semibold text-gray-800">
+            End Date
+        </label>
+        <input
+            name="end-date"
+            id="end-date"
+            type="date"
+            required
+            autocomplete="end-date"
+            class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500
+            text-gray-800 rounded"
+        />
+        </div>
+        <div class="py-2">
+        <label for="monthly-contribution" class="text-sm font-semibold text-gray-800">
+            Months to Goal
+        </label>
+        <input
+            name="months-to-goal"
+            id="months-to-goal"
+            type="number"
+            step="0.01"
+            required
+            autocomplete="months-to-goal"
+            class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500
+            text-gray-800 rounded"
+        />
+        </div>
+        <div class="py-4">
+        <button class="w-full py-4 px-2 bg-indigo-600 hover:bg-indigo-700
+          text-white rounded font-bold text-lg">
+          Create goal
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{{end}}
